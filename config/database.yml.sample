@@ -1,0 +1,18 @@
+default: &default
+  adapter: postgresql
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  encoding: utf8
+  timeout: 5000
+
+development:
+  <<: *default
+  database: contact_api_development
+  host: localhost
+
+test:
+  <<: *default
+  database: contact_api_test
+
+production:
+  <<: *default
+  database: contact_api_production
