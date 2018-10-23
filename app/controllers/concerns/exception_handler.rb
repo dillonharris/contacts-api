@@ -10,9 +10,4 @@ module ExceptionHandler
       json_response({ message: e.message }, :unprocessable_entity)
     end
   end
-
-  private
-  def json_response(object, status = :ok)
-    render json: object, status: status
-  end
 end

@@ -1,5 +1,5 @@
 class ContactsController < ApplicationController
-  before_action :set_contact, only: [ :show, :update, :delete ]
+  before_action :set_contact, only: [ :show, :update, :destroy ]
 
   def index
     @contacts = Contact.all
@@ -17,17 +17,17 @@ class ContactsController < ApplicationController
 
   def update
     @contact.update(contact_params)
-    head :no_content
+    json_response(@contact, :no_content)
   end
 
-  def delete
+  def destroy
     @contact.destroy
-    head :no_content
+    json_response(@contact, :no_content)
   end
 
   private
   def contact_params
-    params.require(:contact).permit(:title, :name, :surname, :nickname, :website, :relationship, :other)
+    params.permit(:title, :name, :surname, :nickname, :website, :relationship, :other)
   end
 
   def set_contact
